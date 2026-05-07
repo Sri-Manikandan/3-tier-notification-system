@@ -1,0 +1,118 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "NotificationDALLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "NotificationModelLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NotificationDALLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NotificationDALLibrary.dll": {}
+        }
+      },
+      "NotificationModelLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/NotificationModelLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NotificationModelLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NotificationDALLibrary/1.0.0": {
+      "type": "project",
+      "path": "../NotificationDALLibrary/NotificationDALLibrary.csproj",
+      "msbuildProject": "../NotificationDALLibrary/NotificationDALLibrary.csproj"
+    },
+    "NotificationModelLibrary/1.0.0": {
+      "type": "project",
+      "path": "../NotificationModelLibrary/NotificationModelLibrary.csproj",
+      "msbuildProject": "../NotificationModelLibrary/NotificationModelLibrary.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "NotificationDALLibrary >= 1.0.0",
+      "NotificationModelLibrary >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/srimanikandanr/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationBLLLibrary/NotificationBLLLibrary.csproj",
+      "projectName": "NotificationBLLLibrary",
+      "projectPath": "/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationBLLLibrary/NotificationBLLLibrary.csproj",
+      "packagesPath": "/Users/srimanikandanr/.nuget/packages/",
+      "outputPath": "/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationBLLLibrary/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/srimanikandanr/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "/opt/homebrew/Cellar/dotnet@9/9.0.115/libexec/library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {
+            "/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationDALLibrary/NotificationDALLibrary.csproj": {
+              "projectPath": "/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationDALLibrary/NotificationDALLibrary.csproj"
+            },
+            "/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationModelLibrary/NotificationModelLibrary.csproj": {
+              "projectPath": "/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationModelLibrary/NotificationModelLibrary.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.100"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet@9/9.0.115/libexec/sdk/9.0.115/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
