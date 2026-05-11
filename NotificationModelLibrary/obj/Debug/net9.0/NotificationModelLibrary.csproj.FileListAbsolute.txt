@@ -9,3 +9,4 @@
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationModelLibrary/obj/Debug/net9.0/refint/NotificationModelLibrary.dll
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationModelLibrary/obj/Debug/net9.0/NotificationModelLibrary.pdb
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationModelLibrary/obj/Debug/net9.0/ref/NotificationModelLibrary.dll
+/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationModelLibrary/obj/Debug/net9.0/NotificationModelLibrary.sourcelink.json

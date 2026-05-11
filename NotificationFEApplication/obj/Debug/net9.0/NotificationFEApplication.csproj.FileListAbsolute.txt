@@ -20,3 +20,7 @@
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationFEApplication/obj/Debug/net9.0/NotificationFEApplication.pdb
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationFEApplication/obj/Debug/net9.0/NotificationFEApplication.genruntimeconfig.cache
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationFEApplication/obj/Debug/net9.0/ref/NotificationFEApplication.dll
+/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationFEApplication/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationFEApplication/bin/Debug/net9.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationFEApplication/bin/Debug/net9.0/Npgsql.dll
+/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationFEApplication/obj/Debug/net9.0/NotificationFEApplication.sourcelink.json

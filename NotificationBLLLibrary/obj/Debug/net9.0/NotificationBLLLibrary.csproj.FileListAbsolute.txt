@@ -15,3 +15,4 @@
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationBLLLibrary/obj/Debug/net9.0/refint/NotificationBLLLibrary.dll
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationBLLLibrary/obj/Debug/net9.0/NotificationBLLLibrary.pdb
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationBLLLibrary/obj/Debug/net9.0/ref/NotificationBLLLibrary.dll
+/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationBLLLibrary/obj/Debug/net9.0/NotificationBLLLibrary.sourcelink.json

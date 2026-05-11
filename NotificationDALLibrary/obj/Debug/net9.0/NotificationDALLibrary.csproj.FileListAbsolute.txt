@@ -13,3 +13,4 @@
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationDALLibrary/obj/Debug/net9.0/refint/NotificationDALLibrary.dll
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationDALLibrary/obj/Debug/net9.0/NotificationDALLibrary.pdb
 /Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationDALLibrary/obj/Debug/net9.0/ref/NotificationDALLibrary.dll
+/Users/srimanikandanr/My Files/Presidio/Three-Tier Notification System/NotificationDALLibrary/obj/Debug/net9.0/NotificationDALLibrary.sourcelink.json
