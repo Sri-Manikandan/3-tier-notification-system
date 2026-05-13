@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NotificationBLLLibrary.Services;
 using NotificationModelLibrary;
 using NotificationModelLibrary.Exceptions;
@@ -8,15 +9,11 @@ namespace NotificationFEApplication
 {
     public class Program
     {
-        private static NotificationService _service = new NotificationService();
-        private static User? _currentUser;
-        private static NotificationType? _type;
-        private static string? _message;
+        private static NotificationService _notificationService = new NotificationService();
+        private static UserService _userService = new UserService();
 
         public static void Main()
         {
-            Console.WriteLine("   Simple Notification System (3-Tier)");
-
             bool run = true;
             while (run)
             {
@@ -28,27 +25,16 @@ namespace NotificationFEApplication
                 {
                     switch (choice?.Trim())
                     {
-                        case "1": 
-                            AddUserDetails(); 
-                            break;
-                        case "2": 
-                            ChooseNotificationType(); 
-                            break;
-                        case "3": 
-                            EnterNotificationMessage(); 
-                            break;
-                        case "4": 
-                            SendNotification(); 
-                            break;
-                        case "5": 
-                            DisplaySentNotifications(); 
-                            break;
-                        case "6":
+                        case "1": SendNotificationFlow(); break;
+                        case "2": ViewAllNotifications(); break;
+                        case "3": ViewAllUsers(); break;
+                        case "4": ViewNotificationsByUser(); break;
+                        case "5":
                             run = false;
                             Console.WriteLine("Goodbye!");
                             break;
                         default:
-                            Console.WriteLine("Invalid choice. Please select a number from 1 to 6.");
+                            Console.WriteLine("Invalid choice. Please select a number from 1 to 5.");
                             break;
                     }
                 }
@@ -67,104 +53,127 @@ namespace NotificationFEApplication
 
         private static void ShowMenu()
         {
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine("  1. Add user details");
-            Console.WriteLine("  2. Choose notification type");
-            Console.WriteLine("  3. Enter notification message");
-            Console.WriteLine("  4. Send notification");
-            Console.WriteLine("  5. Display sent notifications");
-            Console.WriteLine("  6. Exit");
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("Simple Notification System (3-Tier)");
+            Console.WriteLine("1. Send notification");
+            Console.WriteLine("2. View all notifications");
+            Console.WriteLine("3. View all users");
+            Console.WriteLine("4. View notifications by user");
+            Console.WriteLine("5. Exit");
             Console.Write("Enter your choice: ");
         }
 
-        private static void AddUserDetails()
-        {
-            Console.WriteLine("Add User Details");
-
-            Console.Write("Enter name: ");
-            string name = (Console.ReadLine() ?? string.Empty).Trim();
-            Console.Write("Enter email: ");
-            string email = (Console.ReadLine() ?? string.Empty).Trim();
-            Console.Write("Enter phone number (10 digits): ");
-            string phone = (Console.ReadLine() ?? string.Empty).Trim();
-
-            _currentUser = new User(name, email, phone);
-            Console.WriteLine("User details saved:");
-            Console.WriteLine(_currentUser);
-        }
-
-        private static void ChooseNotificationType()
-        {
-            Console.WriteLine("Choose Notification Type");
-            Console.WriteLine("1. Email");
-            Console.WriteLine("2. SMS");
-            Console.Write("Enter your choice: ");
-
-            string? choice = Console.ReadLine();
-            switch (choice?.Trim())
-            {
-                case "1":
-                    _type = NotificationType.Email;
-                    Console.WriteLine("Notification type set to Email.");
-                    break;
-                case "2":
-                    _type = NotificationType.SMS;
-                    Console.WriteLine("Notification type set to SMS.");
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice. Notification type not changed.");
-                    break;
-            }
-        }
-
-        private static void EnterNotificationMessage()
-        {
-            Console.WriteLine("Enter Notification Message");
-            Console.Write("Message: ");
-            _message = Console.ReadLine() ?? string.Empty;
-            Console.WriteLine("Message captured.");
-        }
-
-        private static void SendNotification()
+        private static void SendNotificationFlow()
         {
             Console.WriteLine("Send Notification");
 
-            if (_currentUser == null)
+            Console.Write("Enter name: ");
+            string name = (Console.ReadLine() ?? string.Empty).Trim();
+
+            Console.Write("Enter email: ");
+            string email = (Console.ReadLine() ?? string.Empty).Trim();
+
+            Console.Write("Enter phone (10 digits): ");
+            string phone = (Console.ReadLine() ?? string.Empty).Trim();
+
+            Console.WriteLine("Notification type: [1] Email  [2] SMS");
+            Console.Write("Enter choice: ");
+            string? typeChoice = Console.ReadLine()?.Trim();
+
+            NotificationType type;
+            switch (typeChoice)
             {
-                throw new CustomException("Please add user details first (option 1).");
-            }
-            if (_type == null)
-            {
-                throw new CustomException("Please choose a notification type first (option 2).");
-            }
-            if (_message == null)
-            {
-                throw new CustomException("Please enter a notification message first (option 3).");
+                case "1": type = NotificationType.Email; break;
+                case "2": type = NotificationType.SMS; break;
+                default:
+                    Console.WriteLine("Invalid notification type.");
+                    return;
             }
 
-            _service.SendNotification(_message, _type.Value, _currentUser);
-            Console.WriteLine("Notification sent successfully.");
+            Console.Write("Enter message: ");
+            string message = Console.ReadLine() ?? string.Empty;
 
-            _message = null;
+            User user = new User(name, email, phone);
+
+            Console.WriteLine("\nSending...");
+            _notificationService.SendNotification(message, type, user);
+
+            string target = type == NotificationType.Email ? email : phone;
+            Console.WriteLine($"✓ Notification sent successfully to {target}");
         }
 
-        private static void DisplaySentNotifications()
+        private static void ViewAllNotifications()
         {
-            Console.WriteLine("Sent Notifications");
-            List<Notification> allNotifications = _service.GetAllNotifications();
+            Console.WriteLine("All Notifications");
+            List<Notification> notifications = _notificationService.GetAllNotifications();
 
-            if (allNotifications.Count == 0)
+            if (notifications.Count == 0)
             {
-                Console.WriteLine("No notifications have been sent yet.");
+                Console.WriteLine("No notifications found.");
                 return;
             }
 
-            for (int i = 0; i < allNotifications.Count; i++)
+            for (int i = 0; i < notifications.Count; i++)
+                Console.WriteLine($"{i + 1}. {notifications[i]}");
+        }
+
+        private static void ViewAllUsers()
+        {
+            Console.WriteLine("All Users");
+            List<User> users = _userService.GetAllUsers();
+
+            if (users.Count == 0)
             {
-                Console.WriteLine($"\n#{i + 1}");
-                Console.WriteLine(allNotifications[i]);
+                Console.WriteLine("No users found.");
+                return;
             }
+
+            PrintUsersTable(users);
+        }
+
+        private static void ViewNotificationsByUser()
+        {
+            Console.WriteLine("Notifications by User");
+            List<User> users = _userService.GetAllUsers();
+
+            if (users.Count == 0)
+            {
+                Console.WriteLine("No users found.");
+                return;
+            }
+
+            PrintUsersTable(users);
+
+            Console.Write("\nSelect user (enter number): ");
+            string? input = Console.ReadLine()?.Trim();
+
+            if (!int.TryParse(input, out int index) || index < 1 || index > users.Count)
+            {
+                Console.WriteLine("Invalid selection.");
+                return;
+            }
+
+            User selected = users[index - 1];
+            List<Notification> userNotifications = _notificationService
+                .GetAllNotifications()
+                .Where(n => n.RecipientId == selected.Id)
+                .ToList();
+
+            Console.WriteLine($"\nNotifications for {selected.Name}");
+
+            if (userNotifications.Count == 0)
+            {
+                Console.WriteLine($"No notifications found for {selected.Name}.");
+                return;
+            }
+
+            for (int i = 0; i < userNotifications.Count; i++)
+                Console.WriteLine($"{i + 1}. {userNotifications[i]}");
+        }
+
+        private static void PrintUsersTable(List<User> users)
+        {
+            for (int i = 0; i < users.Count; i++)
+                Console.WriteLine($"{i + 1}. {users[i]}");
         }
     }
 }

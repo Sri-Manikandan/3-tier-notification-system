@@ -23,7 +23,7 @@ namespace NotificationBLLLibrary.Services
                 return existing.Id;
             }
 
-            return _userRepository.Add(user);
+            return _userRepository.Add(user).Id;
         }
 
         public List<User> GetAllUsers()

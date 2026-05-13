@@ -2,11 +2,9 @@ using NotificationModelLibrary;
 
 namespace NotificationDALLibrary.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        int Add(User user);
         User? GetByEmail(string email);
         User? GetByPhone(string phoneNumber);
-        List<User> GetAll();
     }
 }

@@ -9,7 +9,7 @@ using NotificationModelLibrary.Exceptions;
 
 namespace NotificationBLLLibrary.Services{
     public class NotificationService {
-        private INotificationRepository<Notification> _repository;
+        private IRepository<Notification> _repository;
         private IUserService _userService;
         private Dictionary<NotificationType, INotificationSender> _senders;
 
@@ -30,9 +30,9 @@ namespace NotificationBLLLibrary.Services{
                 throw new CustomException($"No sender configured for notification type '{type}'.");
             }
 
-            _userService.GetOrAddUser(user, type);
+            int userId = _userService.GetOrAddUser(user, type);
 
-            Notification notification = new Notification(message, type, user);
+            Notification notification = new Notification(message, type, userId);
             sender.Send(user, notification);
             _repository.Add(notification);
         }
